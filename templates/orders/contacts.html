@@ -1,0 +1,93 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Контакты — B&amp;B COFFEE{% endblock %}
+{% block header_extra_class %} solid{% endblock %}
+
+{% block content %}
+<div class="contacts-page">
+
+    <!-- Заголовок -->
+    <div class="contacts-hero">
+        <div class="container">
+            <div class="label">Мы здесь</div>
+            <h1>Ждём вас</h1>
+        </div>
+    </div>
+
+    <!-- Основной контент -->
+    <div class="contacts-grid container">
+
+        <!-- Левая колонка: контактная информация -->
+        <div class="contacts-info">
+            <div class="contacts-info-grid">
+                <div>
+                    <p class="ci-label">Адрес</p>
+                    <p class="ci-value">ул. Кофейная панорама, 12<br>Центральный район</p>
+                </div>
+                <div>
+                    <p class="ci-label">Часы работы</p>
+                    <p class="ci-value">Пн — Пт: 08:00 – 23:00<br>Сб — Вс: 09:00 – 23:00</p>
+                </div>
+                <div>
+                    <p class="ci-label">Телефон</p>
+                    <p class="ci-value">+7 (999) 123-45-67</p>
+                </div>
+                <div>
+                    <p class="ci-label">Email</p>
+                    <p class="ci-value">hello@bbcoffee.ru</p>
+                </div>
+                <div>
+                    <p class="ci-label">Instagram</p>
+                    <p class="ci-value">@bb.coffee</p>
+                </div>
+                <div>
+                    <p class="ci-label">Telegram</p>
+                    <p class="ci-value">@bbcoffee_official</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Правая колонка: форма -->
+        <div class="contacts-form-col">
+            <p class="form-title">Забронировать столик</p>
+
+            {% if success %}
+            <div class="success-banner">
+                ✦ &nbsp; Заявка принята. Мы свяжемся с вами в ближайшее время.
+            </div>
+            {% endif %}
+
+            <form method="post" id="reservationForm">
+                {% csrf_token %}
+
+                <div class="form-field">
+                    {{ form.name }}
+                    {% if form.name.errors %}
+                    <p class="form-error">{{ form.name.errors.0 }}</p>
+                    {% endif %}
+                </div>
+
+                <div class="form-field">
+                    {{ form.email }}
+                    {% if form.email.errors %}
+                    <p class="form-error">{{ form.email.errors.0 }}</p>
+                    {% endif %}
+                </div>
+
+                <div class="form-field">
+                    {{ form.message }}
+                    {% if form.message.errors %}
+                    <p class="form-error">{{ form.message.errors.0 }}</p>
+                    {% endif %}
+                </div>
+
+                <button type="submit" class="btn btn-primary" style="width:100%;justify-content:center;margin-top:8px">
+                    Отправить заявку
+                </button>
+            </form>
+        </div>
+
+    </div>
+</div>
+{% endblock %}

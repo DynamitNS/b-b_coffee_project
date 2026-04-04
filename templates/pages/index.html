@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}B&amp;B COFFEE — Кофе, за которым возвращаются{% endblock %}
+
+{% block content %}
+
+<!-- HERO -->
+<section class="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-grain"></div>
+    <div class="hero-content">
+        <div class="hero-eyebrow">Пространство B&amp;B</div>
+        <h1 class="hero-title">
+            Кофе, <em>за которым</em><br>возвращаются
+        </h1>
+        <p class="hero-subtitle">
+            Каждая чашка — это момент, созданный с вниманием<br>
+            к каждой детали. Добро пожаловать в B&amp;B.
+        </p>
+        <div class="hero-actions">
+            <a href="{% url 'menu:menu' %}" class="btn btn-primary">Исследовать меню</a>
+            <a href="{% url 'orders:contacts' %}" class="btn btn-ghost">Забронировать столик</a>
+        </div>
+    </div>
+    <div class="hero-scroll">
+        <div class="hero-scroll-line"></div>
+        <span class="hero-scroll-text">Scroll</span>
+    </div>
+</section>
+
+<!-- ПРЕИМУЩЕСТВА -->
+<section class="features">
+    <div class="features-grid">
+        <div class="feature-item reveal">
+            <span class="feature-icon">✦</span>
+            <h3>Авторские обжарки</h3>
+            <p>Зёрна Specialty-категории от лучших фермеров Эфиопии, Колумбии и Кении.</p>
+        </div>
+        <div class="feature-item reveal reveal-d1">
+            <span class="feature-icon">◷</span>
+            <h3>Ежедневно 08–23</h3>
+            <p>Ваш утренний ритуал и вечерний отдых доступны каждый день без исключения.</p>
+        </div>
+        <div class="feature-item reveal reveal-d2">
+            <span class="feature-icon">◈</span>
+            <h3>Уютное пространство</h3>
+            <p>Минималистичный интерьер для продуктивной работы, встреч и спокойного отдыха.</p>
+        </div>
+    </div>
+</section>
+
+{% endblock %}

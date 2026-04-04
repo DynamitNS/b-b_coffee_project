@@ -1,0 +1,79 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Меню — B&amp;B COFFEE{% endblock %}
+{% block meta_desc %}Авторское меню кофейни B&B: эспрессо, фильтр-кофе, авторские напитки, десерты и завтраки.{% endblock %}
+{% block header_extra_class %} solid{% endblock %}
+
+{% block content %}
+
+<section class="menu-hero">
+    <div class="container">
+        <div class="label">Наш выбор</div>
+        <h1>Меню</h1>
+        <div class="divider"></div>
+
+        <form method="get" class="menu-search" style="max-width:760px;margin:28px auto 0;display:grid;grid-template-columns:1fr auto auto;gap:12px;align-items:center;">
+            <input type="text" name="q" value="{{ query }}" placeholder="Поиск по меню" class="form-input" style="border:1px solid var(--border);padding:14px 16px;">
+            <select name="category" class="form-input" style="border:1px solid var(--border);padding:14px 16px;min-width:220px;">
+                <option value="">Все категории</option>
+                {% for cat in all_categories %}
+                <option value="{{ cat.slug }}" {% if selected_category == cat.slug %}selected{% endif %}>{{ cat.name }}</option>
+                {% endfor %}
+            </select>
+            <button type="submit" class="btn btn-primary">Найти</button>
+        </form>
+    </div>
+</section>
+
+{% if categories %}
+<nav class="menu-nav">
+    <div class="container">
+        <div class="menu-nav-inner">
+            {% for cat in categories %}
+            <a href="#cat-{{ cat.slug }}" class="menu-nav-link{% if forloop.first %} is-active{% endif %}"
+               data-slug="{{ cat.slug }}">{{ cat.name }}</a>
+            {% endfor %}
+        </div>
+    </div>
+</nav>
+{% endif %}
+
+{% for category in categories %}
+<section class="menu-section reveal" data-slug="{{ category.slug }}" id="cat-{{ category.slug }}">
+    <div class="container">
+        <div class="menu-section-header">
+            <span class="menu-section-title">{{ category.name }}</span>
+        </div>
+        <div class="menu-grid">
+            {% for item in category.visible_items %}
+            <article class="menu-card">
+                {% if item.image %}
+                <div class="menu-card-img">
+                    <img src="{{ item.image.url }}" alt="{{ item.name }}" loading="lazy">
+                    <span class="menu-badge">{{ category.name }}</span>
+                </div>
+                {% else %}
+                <div class="menu-card-placeholder">☕</div>
+                {% endif %}
+                <div class="menu-card-body">
+                    <div class="menu-card-top">
+                        <span class="menu-card-name">{{ item.name }}</span>
+                        <span class="menu-card-price">{{ item.price|floatformat:0 }} ₽</span>
+                    </div>
+                    {% if item.description %}
+                    <p class="menu-card-desc">{{ item.description }}</p>
+                    {% endif %}
+                </div>
+            </article>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+{% empty %}
+<div class="container" style="padding:100px 6%;text-align:center;color:var(--gray);font-family:var(--font-ui);font-size:14px;letter-spacing:1px">
+    Ничего не найдено. Попробуйте изменить запрос или выбрать другую категорию.
+</div>
+{% endfor %}
+
+{% endblock %}

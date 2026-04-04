@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% block title %}Регистрация — B&B COFFEE{% endblock %}
+{% block content %}
+<section class="contacts-page">
+    <div class="contacts-hero">
+        <div class="container">
+            <div class="label">Аккаунт</div>
+            <h1>Регистрация</h1>
+        </div>
+    </div>
+    <div class="contacts-grid container" style="grid-template-columns:1fr;">
+        <div class="contacts-form-col" style="padding-left:0;max-width:560px;width:100%;margin:0 auto;">
+            <p class="form-title">Создайте личный кабинет</p>
+            <form method="post">
+                {% csrf_token %}
+                <div class="form-field">{{ form.username }}</div>
+                {% if form.username.errors %}<p class="form-error">{{ form.username.errors.0 }}</p>{% endif %}
+                <div class="form-field">{{ form.email }}</div>
+                {% if form.email.errors %}<p class="form-error">{{ form.email.errors.0 }}</p>{% endif %}
+                <div class="form-field">{{ form.password1 }}</div>
+                {% if form.password1.errors %}<p class="form-error">{{ form.password1.errors.0 }}</p>{% endif %}
+                <div class="form-field">{{ form.password2 }}</div>
+                {% if form.password2.errors %}<p class="form-error">{{ form.password2.errors.0 }}</p>{% endif %}
+                <button type="submit" class="btn btn-primary" style="width:100%;justify-content:center;">Создать аккаунт</button>
+            </form>
+            <p style="margin-top:16px;color:var(--gray);font-family:var(--font-ui);font-size:13px;">
+                Уже есть аккаунт? <a href="{% url 'users:login' %}" style="color:var(--gold);">Войти</a>
+            </p>
+        </div>
+    </div>
+</section>
+{% endblock %}

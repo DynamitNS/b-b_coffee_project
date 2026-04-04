@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% block title %}Вход — B&B COFFEE{% endblock %}
+{% block content %}
+<section class="contacts-page">
+    <div class="contacts-hero">
+        <div class="container">
+            <div class="label">Аккаунт</div>
+            <h1>Вход</h1>
+        </div>
+    </div>
+    <div class="contacts-grid container" style="grid-template-columns:1fr;">
+        <div class="contacts-form-col" style="padding-left:0;max-width:560px;width:100%;margin:0 auto;">
+            <p class="form-title">Войдите в личный кабинет</p>
+            {% if form.errors %}
+            <div class="success-banner" style="border-color:rgba(224,112,112,.35);color:#f0b0b0;">
+                Неверное имя пользователя или пароль.
+            </div>
+            {% endif %}
+            <form method="post">
+                {% csrf_token %}
+                <div class="form-field">{{ form.username }}</div>
+                <div class="form-field">{{ form.password }}</div>
+                <button type="submit" class="btn btn-primary" style="width:100%;justify-content:center;">Войти</button>
+            </form>
+            <p style="margin-top:16px;color:var(--gray);font-family:var(--font-ui);font-size:13px;">
+                Нет аккаунта? <a href="{% url 'users:register' %}" style="color:var(--gold);">Зарегистрироваться</a>
+            </p>
+        </div>
+    </div>
+</section>
+{% endblock %}
