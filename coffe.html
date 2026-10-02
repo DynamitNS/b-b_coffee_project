@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bean & Brew — кофейня</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, sans-serif;
+        }
+
+        body {
+            background: #fdf6ef;
+            color: #3b2417;
+            line-height: 1.6;
+        }
+
+        /* ===== HEADER ===== */
+        header {
+            background: #3b2417;
+            color: #fdf6ef;
+            padding: 20px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+        }
+
+        header h1 {
+            font-size: 26px;
+            letter-spacing: 2px;
+        }
+
+        nav a {
+            color: #fdf6ef;
+            text-decoration: none;
+            margin-left: 25px;
+            font-size: 15px;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: #d4a373;
+        }
+
+        /* ===== HERO ===== */
+        .hero {
+            background: linear-gradient(rgba(59, 36, 23, 0.7), rgba(59, 36, 23, 0.7)),
+                        url('https://images.unsplash.com/photo-1447933601403-0c6688de566e?w=1600') center/cover;
+            color: #fff;
+            text-align: center;
+            padding: 120px 20px;
+        }
+
+        .hero h2 {
+            font-size: 48px;
+            margin-bottom: 20px;
+        }
+
+        .hero p {
+            font-size: 20px;
+            margin-bottom: 30px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .btn {
+            display: inline-block;
+            background: #d4a373;
+            color: #3b2417;
+            padding: 14px 40px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 16px;
+            transition: transform 0.3s, background 0.3s;
+        }
+
+        .btn:hover {
+            background: #e6b98a;
+            transform: translateY(-3px);
+        }
+
+        /* ===== ABOUT ===== */
+        section {
+            padding: 70px 40px;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        section h3 {
+            font-size: 34px;
+            text-align: center;
+            margin-bottom: 40px;
+            color: #3b2417;
+        }
+
+        section h3::after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 3px;
+            background: #d4a373;
+            margin: 15px auto 0;
+            border-radius: 2px;
+        }
+
+        .about-text {
+            font-size: 17px;
+            text-align: center;
+            max-width: 750px;
+            margin: 0 auto;
+        }
+
+        /* ===== MENU ===== */
+        .menu-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 25px;
+        }
+
+        .menu-card {
+            background: #fff;
+            border-radius: 15px;
+            padding: 30px 25px;
+            text-align: center;
+            box-shadow: 0 6px 18px rgba(59, 36, 23, 0.08);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .menu-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 28px rgba(59, 36, 23, 0.15);
+        }
+
+        .menu-card .icon {
+            font-size: 44px;
+            margin-bottom: 15px;
+        }
+
+        .menu-card h4 {
+            font-size: 20px;
+            margin-bottom: 10px;
+            color: #3b2417;
+        }
+
+        .menu-card p {
+            font-size: 14px;
+            color: #7a5c48;
+            margin-bottom: 12px;
+        }
+
+        .price {
+            font-weight: bold;
+            color: #d4a373;
+            font-size: 18px;
+        }
+
+        /* ===== CONTACTS ===== */
+        #contacts {
+            background: #3b2417;
+            color: #fdf6ef;
+            max-width: 100%;
+            text-align: center;
+        }
+
+        #contacts h3 {
+            color: #fdf6ef;
+        }
+
+        #contacts p {
+            margin: 8px 0;
+            font-size: 16px;
+        }
+
+        /* ===== FOOTER ===== */
+        footer {
+            background: #2a190f;
+            color: #b8a294;
+            text-align: center;
+            padding: 20px;
+            font-size: 14px;
+        }
+
+        /* ===== АДАПТИВ ===== */
+        @media (max-width: 768px) {
+            header {
+                flex-direction: column;
+                gap: 10px;
+                padding: 15px;
+            }
+            nav a {
+                margin: 0 10px;
+                font-size: 14px;
+            }
+            .hero h2 {
+                font-size: 32px;
+            }
+            .hero p {
+                font-size: 17px;
+            }
+            section {
+                padding: 50px 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ШАПКА -->
+    <header>
+        <h1>☕ Bean & Brew</h1>
+        <nav>
+            <a href="#about">О нас</a>
+            <a href="#menu">Меню</a>
+            <a href="#contacts">Контакты</a>
+        </nav>
+    </header>
+
+    <!-- ГЛАВНЫЙ ЭКРАН -->
+    <div class="hero">
+        <h2>Кофе, который согревает</h2>
+        <p>Свежеобжаренные зёрна, уютная атмосфера и лучшие бариста в городе ждут вас каждый день.</p>
+        <a href="#menu" class="btn">Смотреть меню</a>
+    </div>
+
+    <!-- О НАС -->
+    <section id="about">
+        <h3>О нас</h3>
+        <p class="about-text">
+            Bean & Brew — это небольшая кофейня в центре города, где каждая чашка готовится с любовью.
+            Мы работаем с фермерскими зёрнами из Эфиопии, Колумбии и Бразилии, обжариваем их каждую неделю
+            и всегда рады угостить вас идеальным эспрессо.
+        </p>
+    </section>
+
+    <!-- МЕНЮ -->
+    <section id="menu">
+        <h3>Наше меню</h3>
+        <div class="menu-grid">
+
+            <div class="menu-card">
+                <div class="icon">☕</div>
+                <h4>Эспрессо</h4>
+                <p>Классический крепкий кофе из свежеобжаренных зёрен</p>
+                <div class="price">150 ₽</div>
+            </div>
+
+            <div class="menu-card">
+                <div class="icon">🥛</div>
+                <h4>Капучино</h4>
+                <p>Нежная молочная пена и насыщенный эспрессо</p>
+                <div class="price">220 ₽</div>
+            </div>
+
+            <div class="menu-card">
+                <div class="icon">🍫</div>
+                <h4>Мокко</h4>
+                <p>Кофе с шоколадом и взбитыми сливками</p>
+                <div class="price">250 ₽</div>
+            </div>
+
+            <div class="menu-card">
+                <div class="icon">🧊</div>
+                <h4>Айс-латте</h4>
+                <p>Освежающий холодный кофе с молоком и льдом</p>
+                <div class="price">240 ₽</div>
+            </div>
+
+            <div class="menu-card">
+                <div class="icon">🥐</div>
+                <h4>Круассан</h4>
+                <p>Свежая выпечка к вашему кофе</p>
+                <div class="price">130 ₽</div>
+            </div>
+
+            <div class="menu-card">
+                <div class="icon">🍰</div>
+                <h4>Чизкейк</h4>
+                <p>Нежный десерт с ягодным соусом</p>
+                <div class="price">280 ₽</div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- КОНТАКТЫ -->
+    <section id="contacts">
+        <h3>Контакты</h3>
+        <p>📍 г. Москва, ул. Кофейная, 12</p>
+        <p>📞 +7 (999) 123-45-67</p>
+        <p>🕘 Ежедневно с 8:00 до 22:00</p>
+    </section>
+
+    <!-- ПОДВАЛ -->
+    <footer>
+        © 2026 Bean & Brew. Все права защищены.
+    </footer>
+
+</body>
+</html>
